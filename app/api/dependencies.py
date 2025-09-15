@@ -7,17 +7,15 @@ from repositories.user_repo import UserRepository
 from database import async_session,get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 
-async def get_db_session():
-    async with async_session() as session:
-        yield session
+
 
 async def get_image_repo(request: web.Request) -> ImageRepository:
-    session:AsyncSession = get_db_session
+    session:AsyncSession = await async_session()
     return ImageRepository(session)
 
 async def get_user_repo(request: web.Request) -> UserRepository:
     # session = await get_db_session(request)
-    session:AsyncSession = get_db_session
+    session:AsyncSession = await async_session()
     return UserRepository(session=session)
 
 async def get_minio_service(request: web.Request) -> MinioService:

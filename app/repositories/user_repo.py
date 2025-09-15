@@ -16,10 +16,10 @@ class UserRepository:
         return result.scalar_one_or_none()
     
     async def get_by_username(self, username: str) -> Optional[UserModel]:
-        async with self.session() as session:
-            result = await session.execute(
-                select(UserModel).where(UserModel.username == username)
-            )
+        # async with self.session() as session:
+        result = await self.session.execute(
+            select(UserModel).where(UserModel.username == username)
+        )
         return result.scalar_one_or_none()
     
     async def get_by_email(self, email: str) -> Optional[UserModel]:

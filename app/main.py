@@ -8,9 +8,6 @@ async def create_app():
     # app = web.Application(middlewares=[auth_middleware])
     app = web.Application()
     
-    # Инициализация БД
-    # app.on_startup.append(init_db)
-    # app.on_cleanup.append(close_db)
     
     # Роуты
     app.router.add_post('/api/login', login)

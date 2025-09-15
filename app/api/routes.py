@@ -81,6 +81,7 @@ async def upload_image(request: Request) -> web.Response:
     
     # Чтение multipart данных
     reader = await request.multipart()
+    
     compression_params = {}
     file_data = None
     filename = None
@@ -108,6 +109,7 @@ async def upload_image(request: Request) -> web.Response:
             return web.json_response({"error": str(e)}, status=400)
     
     # Обработка изображения
+    
     result = await image_service.process_and_save_image(
         file_data, filename, content_type, compression_params or None
     )

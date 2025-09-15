@@ -1,18 +1,18 @@
-version: '3.8'
+version: "3.8"
 services:
   app:
     build: .
     ports:
       - "8080:8080"
-    environment:
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_NAME=image_db
-      - DB_USER=postgres
-      - DB_PASSWORD=password
-      - MINIO_ENDPOINT=minio:9000
-      - MINIO_ACCESS_KEY=minioadmin
-      - MINIO_SECRET_KEY=minioadmin
+    # environment:
+    #   - DB_HOST=postgres
+    #   - DB_PORT=5432
+    #   - DB_NAME=image_db
+    #   - DB_USER=postgres
+    #   - DB_PASSWORD=password
+    #   - MINIO_ENDPOINT=minio:9000
+    #   - MINIO_ACCESS_KEY=minioadmin
+    #   - MINIO_SECRET_KEY=minioadmin
     depends_on:
       - postgres
       - minio
@@ -20,9 +20,9 @@ services:
   postgres:
     image: postgres:14
     environment:
-      POSTGRES_DB: image_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
