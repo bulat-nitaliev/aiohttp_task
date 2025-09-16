@@ -2,10 +2,12 @@ from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
 
+
 class ImageCompressionParams(BaseModel):
     quality: Optional[int] = Field(None, ge=1, le=100)
     x: Optional[int] = Field(None, gt=0)
     y: Optional[int] = Field(None, gt=0)
+
 
 class ImageCreate(BaseModel):
     original_filename: str
@@ -13,6 +15,7 @@ class ImageCreate(BaseModel):
     size: int
     minio_object_name: str
     compression_params: Optional[str] = None
+
 
 class ImageResponse(BaseModel):
     id: int
@@ -26,6 +29,7 @@ class ImageResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
 
 class ImageUploadResponse(BaseModel):
     id: int
