@@ -4,13 +4,13 @@ FROM python:3.9-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY . /app
+COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8080
 
 
-CMD ["python app/main.py"]
+CMD ["python /app/main.py"]
