@@ -28,6 +28,7 @@ async_session = async_sessionmaker(
     autoflush=False,
 )
 
+
 @asynccontextmanager
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """
@@ -45,6 +46,7 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
     finally:
         session.close()
 
+
 async def init_db() -> None:
     """
     Инициализация базы данных - создание всех таблиц.
@@ -54,12 +56,14 @@ async def init_db() -> None:
         await conn.run_sync(Base.metadata.create_all)
     logger.info("Database initialized successfully")
 
+
 async def close_db() -> None:
     """
     Корректное закрытие соединений с базой данных.
     """
     await engine.dispose()
     logger.info("Database connections closed")
+
 
 # Для удобства импорта
 async def async_session() -> AsyncSession:
